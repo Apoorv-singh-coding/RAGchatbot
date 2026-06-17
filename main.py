@@ -23,9 +23,16 @@ embedding_model = OpenAIEmbeddings(
 )
 
 # Qdrant Connection
-vector_db = QdrantVectorStore.from_existing_collection(
+"""vector_db = QdrantVectorStore.from_existing_collection(
     url="http://localhost:6333",
     collection_name="learning_RAG",
+    embedding=embedding_model,
+)"""
+
+vector_db = QdrantVectorStore.from_existing_collection(
+    url=os.getenv("https://659ff597-a9b3-4c49-a522-5d054b5dc118.us-west-1-0.aws.cloud.qdrant.io"),
+    api_key=os.getenv("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIiwic3ViamVjdCI6ImFwaS1rZXk6NjEwZTQzODAtMjE2MS00MjlkLWE3NjktZTM1MDNkODVmZjIwIn0._ocfkW9VvGhuQA8To1TzA7gWtgxHxhpL1JJ52UOVh3g"),
+    collection_name="RAGChatBot",
     embedding=embedding_model,
 )
 
